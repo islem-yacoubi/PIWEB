@@ -3,11 +3,14 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class UserType extends AbstractType
 {
@@ -18,10 +21,35 @@ class UserType extends AbstractType
             ->add('prenom')
             ->add('username')
             ->add('password', PasswordType::class)
-            ->add('role',ChoiceType::class, array( 'choices'=>array('Artiste'=>null,'Moderateur'=>null,'Visiteur'=>null,'Artist NFT'=>null)
+            ->add('role',ChoiceType::class, array( 'choices'=>array('Artiste'=>'Artiste','Moderateur'=>'Moderateur','Visiteur'=>'Visiteur','Artist NFT'=>'Artist NFT')
             ))
             ->add('mail')
-            ->add('image')
+           // ->add('image')
+           ->add('image', FileType::class, [
+               'label' => 'photo de profile (images seulement)',
+
+               // unmapped means that this field is not associated to any entity property
+               'mapped' => false,
+
+               // make it optional so you don't have to re-upload the PDF file
+               // every time you edit the Product details
+               'required' => false,
+
+               // unmapped fields can't define their validation using annotations
+               // in the associated entity, so you can use the PHP constraint classes
+               'constraints' => [
+                   new File([
+                       'maxSize' => '1024k',
+                       'mimeTypes' => [
+                           'image/jpeg',
+                           'image/gif',
+                           'image/jpg',
+                           'image/png',
+                       ],
+                       'mimeTypesMessage' => 'Please upload a valid Image document',
+                   ])
+               ],
+           ])
         ;
     }
 
