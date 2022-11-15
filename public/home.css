@@ -1,0 +1,31 @@
+#diaporama1{
+    width: 1550px;
+    overflow: hidden;
+}
+.images{
+    display: flex;
+    animation-duration: 10s;
+    animation-name: mesImages;
+    animation-iteration-count: infinite;
+}
+@keyframes mesImages {
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(-800px);
+    }
+    50%{
+        transform: translateX(-1500px);
+    }
+    75%{
+        transform: translateX(-1540px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+
+
+

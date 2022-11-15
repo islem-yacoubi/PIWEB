@@ -1,0 +1,28 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+#form2Example1{
+    height: 40px;
+    width: 300px;
+    font-size: 1.5em;
+    border-radius: 12px;
+}
+#form2Example2{
+    height: 40px;
+    width: 300px;
+    font-size: 1.5em;
+    border-radius: 12px;
+}
+button{
+    height: 40px;
+    width: 300px;
+    background-color: slategrey;
+    border-radius: 12px;
+}
