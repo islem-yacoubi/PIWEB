@@ -17,21 +17,21 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('username')
-            ->add('password', PasswordType::class)
+            ->add('nom',null,['attr'=>['placeholder'=>'nom','class'=>'form-control','class'=>'ab']])
+            ->add('prenom',null,['attr'=>['placeholder'=>'prenom','class'=>'form-control','class'=>'ab']])
+            ->add('username',null,['attr'=>['placeholder'=>'username','class'=>'form-control','class'=>'ab']])
+            ->add('password', PasswordType::class,['attr'=>['placeholder'=>'password','class'=>'form-control','class'=>'ab']])
+
+            ->add('mail',null,['attr'=>['placeholder'=>'mail','class'=>'form-control','class'=>'ab']])
             ->add('role',ChoiceType::class, array( 'choices'=>array('Artiste'=>'Artiste','Moderateur'=>'Moderateur','Visiteur'=>'Visiteur','Artist NFT'=>'Artist NFT')
             ))
-            ->add('mail')
            // ->add('image')
            ->add('image', FileType::class, [
-               'label' => 'photo de profile (images seulement)',
+               'label' => 'choose photo Profile',
 
                // unmapped means that this field is not associated to any entity property
                'mapped' => false,
 
-               // make it optional so you don't have to re-upload the PDF file
                // every time you edit the Product details
                'required' => false,
 

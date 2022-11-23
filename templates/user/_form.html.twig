@@ -4,10 +4,9 @@
     <style>
         .ab{
             width: 30%;
-            padding: 12px;
-            border: 1px solid #ccc;
+            padding: 10px;
             border-radius: 4px;
-            resize: vertical;
+            display: block;
 
         }
     </style>
@@ -36,9 +35,9 @@
     </div>
 </nav><center>
 <h1 class="blabla" >Create new User</h1>
-{{ form_start(form) }}
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button type="submit">{{ button_label|default('Save') }} </button>
 {{ form_end(form) }}
     <a href="{{ path('app_user_index') }}">back to list</a>
 </center>
