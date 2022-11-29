@@ -9,7 +9,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+               <!-- <th>Id</th>-->
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Username</th>
@@ -23,17 +23,19 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
+               <!-- <td>{{ user.id }}</td>-->
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.role }}</td>
                 <td>{{ user.mail }}</td>
-                <td>{{ user.image }}</td>
+                <td> <img src={{asset('uploads/users/'  ~ user.image ) }} width="10%"></td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                   <!--
                     <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    -->
                 </td>
             </tr>
         {% else %}
@@ -43,6 +45,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <!--
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+    <a href="{{ path('app_user_new') }}">Create new</a>-->
 {% endblock %}

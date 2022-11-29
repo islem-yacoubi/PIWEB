@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Entity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -9,7 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+class User implements UserInterface , PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -49,14 +53,16 @@ class User
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+   // #[Assert\NotBlank]
     #[Assert\Type('string')]
     private ?string $username = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
 
-
+    /**
+     * @var string The hashed password
+     */
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
@@ -70,6 +76,8 @@ class User
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+
 
     public function getId(): ?int
     {
@@ -112,6 +120,9 @@ class User
         return $this;
     }
 
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -159,4 +170,18 @@ class User
 
         return $this;
     }
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+
 }

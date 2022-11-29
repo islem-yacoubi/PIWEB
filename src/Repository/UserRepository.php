@@ -41,6 +41,19 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
+
+        public function authentification($mail,$password)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.mail LIKE :usr')
+            ->andWhere('u.password LIKE :passwd')
+            ->setParameter('usr', '%'.$mail.'%')
+            ->setParameter('passwd', '%'.$password.'%')
+            ->getQuery()
+            ->execute();
+    }
+
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

@@ -23,7 +23,7 @@ class UserType extends AbstractType
             ->add('password', PasswordType::class,['attr'=>['placeholder'=>'password','class'=>'form-control','class'=>'ab']])
 
             ->add('mail',null,['attr'=>['placeholder'=>'mail','class'=>'form-control','class'=>'ab']])
-            ->add('role',ChoiceType::class, array( 'choices'=>array('Artiste'=>'Artiste','Moderateur'=>'Moderateur','Visiteur'=>'Visiteur','Artist NFT'=>'Artist NFT')
+            ->add('role',ChoiceType::class, array( 'choices'=>array('Artiste'=>'Artiste','Visiteur'=>'Visiteur','Artist NFT'=>'Artist NFT')
             ))
            // ->add('image')
            ->add('image', FileType::class, [
@@ -34,6 +34,7 @@ class UserType extends AbstractType
 
                // every time you edit the Product details
                'required' => false,
+
 
                // unmapped fields can't define their validation using annotations
                // in the associated entity, so you can use the PHP constraint classes
